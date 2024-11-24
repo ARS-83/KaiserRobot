@@ -1,0 +1,6 @@
+/.vscode/*
+/__pycache__/*
+*.session
+*.session-journal
+/*/__pycache__/*
+*.log

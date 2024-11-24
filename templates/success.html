@@ -1,0 +1,91 @@
+<html>
+
+<head>
+  <title>موفقیت آمیز</title>
+</head>
+<style>
+  @font-face {
+    font-family: 'vazir';
+    src: url("{{ url_for('static', filename='fonts/vazir.eot') }}") format('eot');
+    src: url("{{ url_for('static', filename='fonts/vazir.ttf') }}") format('truetype'), url("{{ url_for('static', filename='fonts/vazir.woff') }}") format('woff'), url("{{ url_for('static', filename='fonts/vazir.woff') }}") format('woff2');
+}
+
+  body {
+    font-family: 'vazir';
+    text-align: center;
+    padding: 40px 0;
+    background: #121212;
+  }
+
+  h1 {
+    color: #009966;
+
+    font-weight: 900;
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #404F5E;
+
+    font-size: 20px;
+    margin: 0;
+  }
+
+  i {
+    color: #009966;
+    font-size: 100px;
+    line-height: 200px;
+    margin-left: -15px;
+  }
+
+  h6 {
+    bottom: 10px;
+    text-align: center;
+    width: 100%;
+  }
+  .card img{
+    width: 150px;
+}
+  .card {
+    background: #171717;
+    padding: 60px;
+    border-radius: 4px;
+    
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    justify-content: center;
+    width: fit-content;
+    align-items: center;
+  }
+  .card a{
+    bottom: 10px;
+    margin-top: 20px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    background-color: #009966;
+    color:  #fff;
+width: fit-content;
+text-decoration: none;
+  }
+  p{
+    color: #fff;
+  }
+</style>
+
+<body>
+  <div class="card">
+    <div style="border-radius:200px;display: flex ;align-items: center ;justify-content: center; height:200px; width:200px; background: #b1d1a4; margin:0 auto;">
+      <img src="https://www.freeiconspng.com/uploads/accept-tick-icon-12.png"  alt="accept tick icon" />
+    </div>
+    <h1>پرداخت تایید شد</h1>
+    <p>پرداخت شما با موفقیت تایید شد;<br /> 💖به زودی سرویس شما برای شما ارسال خواهد شد</p>
+    <hr>
+    <a href="https://t.me/MyDOPINGBOT">بازگشت به ربات</a>
+  </div>
+
+  <!-- <h6>Created By <a href="https://github.com/ARS-83">ARS</a></h6> -->
+</body>
+
+</html>

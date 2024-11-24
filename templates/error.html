@@ -1,0 +1,96 @@
+<html>
+
+<head>
+    <title>خطا</title>
+</head>
+<style>
+    @font-face {
+        font-family: 'vazir';
+        src: url("{{ url_for('static', filename='fonts/vazir.eot') }}") format('eot');
+        src: url("{{ url_for('static', filename='fonts/vazir.ttf') }}") format('truetype'), url("{{ url_for('static', filename='fonts/vazir.woff') }}") format('woff'), url("{{ url_for('static', filename='fonts/vazir.woff') }}") format('woff2');
+    }
+
+    body {
+        font-family: 'vazir';
+        text-align: center;
+        padding: 40px 0;
+        background: #121212;
+    }
+
+p{
+  color: #fff;
+}
+    h1 {
+        color: #a7331e;
+
+        font-weight: 900;
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #404F5E;
+
+        font-size: 20px;
+        margin: 0;
+    }
+    p{
+        color: #fff;
+      }
+    i {
+        color: #9ABC66;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left: -15px;
+    }
+
+    h6 {
+        bottom: 10px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .card {
+        background: #171717;
+        padding: 60px;
+        border-radius: 4px;
+        
+        display: inline-block;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        width: fit-content;
+    }
+    .card a{
+        bottom: 10px;
+        margin-top: 20px;
+        padding: 10px 15px;
+        border-radius: 20px;
+        background-color: #a7331e;
+        color:  #fff;
+    width: fit-content;
+    text-decoration: none;
+      }
+    .card img{
+        width: 150px;
+    }
+</style>
+
+<body>
+    <div class="card">
+        <div style="border-radius:150px; height:150px; width:150px; background: #F8FAF5; margin:0 auto;">
+            <img src="https://www.freeiconspng.com/uploads/error-icon-4.png" 
+                alt="Free High quality Error Icon" />
+        </div>
+        <h1>پرداخت تایید نشد</h1>
+        <p>هنگام پرداخت مشکلی پیش آمده;<br /> </p>
+        <hr>
+        <a href="https://t.me/MyDOPINGBOT">بازگشت به ربات</a>
+    </div>
+
+    <!-- <h6>Created By <a href="https://github.com/ARS-83">ARS</a></h6> -->
+</body>
+
+</html>

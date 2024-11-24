@@ -1,0 +1,142 @@
+@font-face {
+  font-family: 'vazir';
+  src: url('../font/vazir.eot') format('eot');
+  src: url('../font/vazir.ttf') format('truetype'), url('../font/vazir.woff') format('woff');
+}
+
+.progress-container {
+  position: relative;
+}
+textarea {
+  color: #fff;
+  background-color: transparent;
+  width: 100%;
+  height: fit-content;
+  border:  none;
+  outline: none;
+}
+
+/* .progress-bar:before {
+    content: "0";
+    position: absolute;
+    left: 11px;
+    bottom: 8px;
+    font-size: 20px;
+    color: rgba(98, 107, 114, 1);
+  }
+  
+  .progress-bar:after {
+    content: "50";
+    position: absolute;
+    right: 7px;
+    bottom: 8px;
+  
+  
+    font-size: 20px;
+  
+    color: rgba(98, 107, 114, 1);
+  } */
+.center-content {
+width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  background-color: #121212 !important;
+  font-family: 'vazir' !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0;
+  flex-direction: column;
+}
+h6 span{
+  height: 350px !important;
+}
+@media screen and (max-width:410px) {
+  .shadow {
+width: 100% !important;  
+  height:  168px  !important;
+  box-shadow: none !important;
+  }
+  
+  .widget {
+    width: 100% !important;
+
+  }
+  .content {
+    width: 100% !important; 
+    height: fit-content;
+  }
+}
+
+.widget {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  margin: 0 auto;
+  width: fit-content;
+  margin: auto;
+  background-color: #171717;
+  /* height: 80vh; */
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.middleText {
+  margin-top: 0;
+  color: #fff !important;
+  font-weight: bold;
+  z-index: 2;
+  position: absolute !important;
+  font-family: 'vazir' !important;
+}
+
+.content {
+
+  width: 360px;
+
+
+}
+
+.content a {
+  margin-top: 20px;
+  width: auto;
+}
+
+.content-service {
+  margin-top: 10px;
+  padding: 8px 8px;
+  background-color: #202020;
+}
+
+.points {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: -80px;
+  z-index: 1;
+  bottom: 70px;
+  text-align: center;
+  text-transform: uppercase;
+  color: rgb(80, 79, 79);
+  font-size: 25px;
+  font-weight: 500;
+  text-shadow: 0 0 3px #000;
+  font-weight: bold;
+}
+
+.shadow {
+  box-shadow: none !important;
+  height: 160px;
+}
+
+/* @media screen and (max-width:) {
+    
+  } */

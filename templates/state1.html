@@ -1,0 +1,196 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جزییات اشتراک </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.rtl.min.css') }}"> -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+
+    <!-- src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"
+ -->
+</head>
+
+<body dir="rtl">
+
+    <div class="center-content container">
+
+    <!-- Start DEMO HTML (Use the following code into your project)-->
+    <div class="widget">
+
+        <h3 class="text-light">سرویس شما</h3>
+
+
+        <h3 class="mt-3 text-light usageShow"></h3>
+        <div class="progress w-100 mb-2">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar" style="width: {{ usage }}%" aria-valuenow="{{ usage }}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        
+        <input type="hidden" id="resultData" value="{{ result }}">
+        <input type="hidden" id="usageData" value="{{ usage }}">
+
+        <div class="content">
+
+            <h6 class="text-light rounded-3 content-service my-1 text-right"> نام : {{ name }} </h6>
+            <h6 class="text-light rounded-3 content-service my-1 text-right"> وضعیت : {{ state }} </h6>
+
+            <h6 class="text-light rounded-3 content-service my-1 text-right"> تاریخ انقضا : {{date}}  </h6>
+
+            <h6 class="text-light rounded-3 content-service my-1 text-right">  حجم مصرف شده  :  <span> {{usageGB}} GB </span>  </h6>
+            <h6 class="text-light rounded-3 content-service my-1 text-right">  حجم باقی مانده  :  {{ rest }} GB  </h6>
+            <h6 class="text-light rounded-3 content-service my-1 text-right">  حجم بسته  :  {{TotalUsage}} GB  </h6>
+            <!-- <h6 class="text-light rounded-3 content-service my-1 text-right" style=" text-wrap: wrap;">  کانفیگ  : <br/> <textarea rows="8"   readonly style="width: 100%;">vless://ad543539-53c6-4e70-946d-269306799d29@iranet.mainonline.link:2052?type=ws&security=none&path=/&host=#🎁 | L22046-48670  </textarea> </h6> -->
+            <h6 class="text-light rounded-3 content-service my-1 text-right" style=" text-wrap: wrap;">  کانفیگ  : <br/> <textarea  rows="8"   readonly style="width: 100%;">{{ result }}</textarea> </h6>
+
+            <a  class="btn btn-outline-light copybox d-block text-light" onclick="CopyData(this)"> کپی سرویس </a>
+           
+   
+        </div>
+
+
+    </div>
+
+</div>
+
+<h6 class="mt-3">Created By <a class="text-info" href="https://github.com/ARS-83">ARS</a></h6>
+    <!-- END EDMO HTML (Happy Coding!)-->
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+    <script>
+const valueUsage = document.querySelector("#usageData").value
+ document.querySelector(".usageShow").innerHTML =  `${Math.round(Number(valueUsage))}%`
+
+        function CopyData(element) {
+            const inputdata = document.querySelector("#resultData").value
+        
+            navigator.clipboard.writeText(inputdata);
+           
+             element.innerText = "کپی شد"
+            setTimeout(function () {
+              
+                element.innerText = "کپی سرویس "
+
+            }, 1000)
+        }
+        // const valueUsage = document.querySelector("#usageData").value
+        // var points = 30;
+        // var maxPoints = 100;
+        // var percent = points / maxPoints * 100;
+        // var ratio = percent / 100;
+        // var pie = d3.layout
+        //     .pie()
+        //     .value(function (d) {
+        //         return d;
+        //     })
+        //     .sort(null);
+        // if (window.innerWidth < 410){
+        //     var w = 150,
+        //     h = 150;
+        // }else{
+        //     var w = 250,
+        //     h = 250;
+        // }
+      
+        // var outerRadius = w / 2 - 10;
+        // var innerRadius = 60;
+        // var color = ["#212121", "#fff", "#888888"];
+        // var colorOld = "#F00";
+        // var colorNew = "#0F0";
+        // var arc = d3.svg
+        //     .arc()
+        //     .innerRadius(innerRadius)
+        //     .outerRadius(outerRadius)
+        //     .startAngle(0)
+        //     .endAngle(Math.PI);
+
+        // var arcLine = d3.svg
+        //     .arc()
+        //     .innerRadius(innerRadius)
+        //     .outerRadius(outerRadius)
+        //     .startAngle(0);
+
+        // var svg = d3
+        //     .select("#loyalty")
+        //     .append("svg")
+        //     .attr({
+        //         width: w,
+        //         height: h,
+        //         class: "shadow"
+        //     })
+        //     .append("g")
+        //     .attr({
+        //         transform:  "translate(" + w / 2 + "," + h / 2 + ")" 
+        //     });
+
+        // var path = svg
+        //     .append("path")
+        //     .attr({
+        //         d: arc,
+        //         transform: "rotate(-90)"
+        //     })
+        //     .style({
+        //         fill: color[0]
+        //     });
+
+        // var pathForeground = svg
+        //     .append("path")
+        //     .datum({ endAngle: 0 })
+        //     .attr({
+        //         d: arcLine,
+        //         transform: "rotate(-90)"
+        //     })
+        //     .style({
+        //         fill: function (d, i) {
+        //             return color[1];
+        //         }
+        //     });
+
+        // var middleCount = svg
+        //     .append("text")
+        //     .datum(0)
+        //     .text(function (d) {
+        //         return d;
+        //     })
+        //     .attr({
+        //         class: "middleText",
+        //         "text-anchor": "middle",
+        //         dy: 0,
+        //         dx: 5
+        //     })
+        //     .style({
+        //         fill: d3.rgb("#fff"),
+        //         "font-size": window.innerWidth < 410 ? "46px" : '56px'
+        //     });
+
+        // var oldValue = 0;
+        // var arcTween = function (transition, newValue, oldValue) {
+
+        //     transition.attrTween("d", function (d) {
+        //         var interpolate = d3.interpolate(d.endAngle, Math.PI * (newValue / 100));
+        //         var interpolateCount = d3.interpolate(oldValue, newValue);
+
+        //         return function (t) {
+        //             d.endAngle = interpolate(t);
+        //             // change percentage to points before rendering text
+        //             middleCount.text(Math.floor(interpolateCount(t) / 100 * maxPoints));
+
+        //             return arcLine(d);
+        //         };
+        //     });
+        // };
+
+        // pathForeground
+        //     .transition()
+        //     .duration(750)
+        //     .ease("cubic")
+        //     .call(arcTween, percent, oldValue, points);
+    </script>
+</body>
+
+</html>
