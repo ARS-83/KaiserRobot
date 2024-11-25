@@ -1,5 +1,6 @@
 # TODO : ADD TotalUsed > This TotalUsed Continue (:
 from pyromod import listen
+import asyncio
 from pyrogram import Client
 from pyrogram.types import  InlineKeyboardButton, InlineKeyboardMarkup
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -860,28 +861,24 @@ async def checkOnlineUsers():
                logger.error(f"Error In Check Online : {e}")  
 
 
-def start_scheduler():
-    scheduler = AsyncIOScheduler()
-    scheduler.add_job(checkOnlineUsers,"interval",seconds=150) #150
-    scheduler.add_job(sendMessage, "interval",seconds=360) # 360
-    scheduler.add_job(CheckDiscount, "interval",seconds=21600) # 21600
-    scheduler.add_job(MessageChanell, "interval",seconds=86400) # 86400
-    scheduler.add_job(QureKESHi  , "interval",seconds=86400) # 86400
-    scheduler.add_job(CheckSubscribeUser  , "interval",seconds=350) # 360
-    scheduler.add_job(SendBackUp  , "interval",seconds=3600) # 3600
-    scheduler.add_job(CheckTimeSub  , "interval",seconds=43200) # 43200
-    scheduler.add_job(SendConfigUser  , "interval",seconds=80) # 20
-    scheduler.add_job(DeleteOrderNoneState  , "interval",seconds=604800) # 604,800
-    scheduler.add_job(CheckServerState,"interval",seconds=60)
-    scheduler.add_job(MessageStateServers,"interval",seconds=3600)
-    scheduler.add_job(imperfectComplete,"interval",seconds=360)# 3600
-
-    scheduler.start()
-    logger.info("scheduler Started")
 
 
+scheduler = AsyncIOScheduler()
+scheduler.add_job(checkOnlineUsers,"interval",seconds=150) #150
+scheduler.add_job(sendMessage, "interval",seconds=360) # 360
+scheduler.add_job(CheckDiscount, "interval",seconds=21600) # 21600
+scheduler.add_job(MessageChanell, "interval",seconds=86400) # 86400
+scheduler.add_job(QureKESHi  , "interval",seconds=86400) # 86400
+scheduler.add_job(CheckSubscribeUser  , "interval",seconds=350) # 360
+scheduler.add_job(SendBackUp  , "interval",seconds=3600) # 3600
+scheduler.add_job(CheckTimeSub  , "interval",seconds=43200) # 43200
+scheduler.add_job(SendConfigUser  , "interval",seconds=80) # 20
+scheduler.add_job(DeleteOrderNoneState  , "interval",seconds=604800) # 604,800
+scheduler.add_job(CheckServerState,"interval",seconds=60)
+scheduler.add_job(MessageStateServers,"interval",seconds=3600)
+scheduler.add_job(imperfectComplete,"interval",seconds=360)# 3600
 
-print("Pyrogram client started!")
-app.run(start_scheduler())
-
-
+scheduler.start()
+logger.info("Scheduler Started")
+app.run()
+   
