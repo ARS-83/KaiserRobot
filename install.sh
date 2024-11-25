@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt update && apt upgrade -y 
-sudo apt install python3
+
 sudo apt install pip
 sudo apt install git 
 git clone https://github.com/ARS-83/KaiserRobot.git
