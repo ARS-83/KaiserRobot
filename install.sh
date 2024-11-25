@@ -47,11 +47,13 @@ sudo ufw allow 'Nginx Full'
 
 sudo ufw delete allow 'Nginx HTTP'
 
-sudo certbot --nginx -d $server_name
+sudo certbot --nginx -d $server_name 
 
 sudo certbot renew --dry-run
 
 currentDir=$(basename "$PWD")
+cd "/$currentDir/KaiserRobot"
+pip install -r requirements.txt
 serviceDir="/etc/systemd/system/Kaiser.service"
 
 python_path=$(which python3)
