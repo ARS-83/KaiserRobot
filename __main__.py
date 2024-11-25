@@ -860,7 +860,7 @@ async def checkOnlineUsers():
                logger.error(f"Error In Check Online : {e}")  
 
 
-async def start_scheduler():
+def start_scheduler():
     scheduler = AsyncIOScheduler()
     scheduler.add_job(checkOnlineUsers,"interval",seconds=150) #150
     scheduler.add_job(sendMessage, "interval",seconds=360) # 360
@@ -879,12 +879,9 @@ async def start_scheduler():
     scheduler.start()
     logger.info("scheduler Started")
 
-@app.on_startup
-async def on_startup():
-    logger.info("App is starting...")
-    await start_scheduler()
 
 
-if __name__ == "__main__":
-    app.run()
+print("Pyrogram client started!")
+app.run(start_scheduler())
+
 

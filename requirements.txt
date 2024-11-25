@@ -12,3 +12,4 @@ qrcode
 flask[async]
 gunicorn
 psutil
+tgcrypto
