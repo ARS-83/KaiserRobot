@@ -11,3 +11,4 @@ aiofiles
 qrcode
 flask[async]
 gunicorn
+psutil

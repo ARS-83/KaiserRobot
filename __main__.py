@@ -859,23 +859,32 @@ async def checkOnlineUsers():
             except Exception as e:
                logger.error(f"Error In Check Online : {e}")  
 
-      # Alan 
-scheduler = AsyncIOScheduler()
-scheduler.add_job(checkOnlineUsers,"interval",seconds=150) #150
-scheduler.add_job(sendMessage, "interval",seconds=360) # 360
-scheduler.add_job(CheckDiscount, "interval",seconds=21600) # 21600
-scheduler.add_job(MessageChanell, "interval",seconds=86400) # 86400
-scheduler.add_job(QureKESHi  , "interval",seconds=86400) # 86400
-scheduler.add_job(CheckSubscribeUser  , "interval",seconds=350) # 360
-scheduler.add_job(SendBackUp  , "interval",seconds=3600) # 3600
-scheduler.add_job(CheckTimeSub  , "interval",seconds=43200) # 43200
-scheduler.add_job(SendConfigUser  , "interval",seconds=80) # 20
-scheduler.add_job(DeleteOrderNoneState  , "interval",seconds=604800) # 604,800
-scheduler.add_job(CheckServerState,"interval",seconds=60)
-scheduler.add_job(MessageStateServers,"interval",seconds=3600)
-scheduler.add_job(imperfectComplete,"interval",seconds=360)# 3600
+
+async def start_scheduler():
+    scheduler = AsyncIOScheduler()
+    scheduler.add_job(checkOnlineUsers,"interval",seconds=150) #150
+    scheduler.add_job(sendMessage, "interval",seconds=360) # 360
+    scheduler.add_job(CheckDiscount, "interval",seconds=21600) # 21600
+    scheduler.add_job(MessageChanell, "interval",seconds=86400) # 86400
+    scheduler.add_job(QureKESHi  , "interval",seconds=86400) # 86400
+    scheduler.add_job(CheckSubscribeUser  , "interval",seconds=350) # 360
+    scheduler.add_job(SendBackUp  , "interval",seconds=3600) # 3600
+    scheduler.add_job(CheckTimeSub  , "interval",seconds=43200) # 43200
+    scheduler.add_job(SendConfigUser  , "interval",seconds=80) # 20
+    scheduler.add_job(DeleteOrderNoneState  , "interval",seconds=604800) # 604,800
+    scheduler.add_job(CheckServerState,"interval",seconds=60)
+    scheduler.add_job(MessageStateServers,"interval",seconds=3600)
+    scheduler.add_job(imperfectComplete,"interval",seconds=360)# 3600
+
+    scheduler.start()
+    logger.info("scheduler Started")
+
+@app.on_startup
+async def on_startup():
+    logger.info("App is starting...")
+    await start_scheduler()
 
 
-scheduler.start()
-app.run()
+if __name__ == "__main__":
+    app.run()
 
