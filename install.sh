@@ -2,7 +2,7 @@
 
 sudo apt update && apt upgrade -y 
 
-sudo apt install pip
+sudo apt install pip -y
 sudo apt install git 
 git clone https://github.com/ARS-83/KaiserRobot.git
 
@@ -36,6 +36,8 @@ cat <<EOL > "$output_file"
 server_name $server_name;
 ...
 EOL
+
+sudo apt install certbot python3-certbot-nginx
 
 sudo nginx -t
 
