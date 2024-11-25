@@ -3119,7 +3119,7 @@ async def GetManageTestBtn():
 async def AddTest(days , volume,countGet,ServerId,catId):
   try:
          
-         await db_manager.Query("INSERT INTO TestFree(Days,Volume,CountGet,ServerId,GroupId) VALUES(?,?,?,?,?)",(days,int(volume),countGet,ServerId[0],catId))
+         await db_manager.Query("INSERT INTO TestFree(Days,Volume,CountGet,ServerId,GroupId) VALUES(?,?,?,?,?)",(days,int(volume),countGet,ServerId,catId))
          return True
   except:
       return False       

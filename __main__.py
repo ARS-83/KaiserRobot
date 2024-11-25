@@ -59,12 +59,11 @@ def generate_password(length):
 
 
 plugins = dict(root="Plugins")
-app = Client("Kaiser_Robo2323t", 
+app = Client("Kaiser_Robo23esfvdf23t", 
              api_id=27920385,
              plugins=plugins,
              api_hash="6ef7b57f85f5d96dfbde6b4fd36412be",
              bot_token="6489326673:AAF20M8j0FHspx1NyyMms4SHKrSYO3G3hGQ")
-
 
 async def sendMessage():
  data = await ReadFileConfig()

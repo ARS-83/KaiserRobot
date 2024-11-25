@@ -71,17 +71,17 @@ Check_Admin = filters.create(CheckAdmin)
 Check_Run = filters.create(CheckRun)
 
 
-@Client.on_message(filters.regex("تست"))
-async def testCheckService(c:Client,m:Message):
-    print("start")
-    dateStart = datetime.datetime.now()
-    await orm.CheckUserService(c)
-    dateend = datetime.datetime.now()
-    load1, load5,load15 = psutil.getloadavg()
+# @Client.on_message(filters.regex("تست"))
+# async def testCheckService(c:Client,m:Message):
+#     print("start")
+#     dateStart = datetime.datetime.now()
+#     await orm.CheckUserService(c)
+#     dateend = datetime.datetime.now()
+#     load1, load5,load15 = psutil.getloadavg()
  
-    cpu_usage = (load5/os.cpu_count()) * 100
+#     cpu_usage = (load5/os.cpu_count()) * 100
  
-    print(f" {dateend} Ended AND Started {dateStart} The CPU usage is : ", cpu_usage)
+#     print(f" {dateend} Ended AND Started {dateStart} The CPU usage is : ", cpu_usage)
 
 @Client.on_message(filters.regex("قطع"))
 async def DisableUserService(c:Client,m:Message):
@@ -263,8 +263,9 @@ async def Service(c:Client,m:Message):
 🔰 /start       
                     """)   
 
-@Client.on_message(filters.regex("🌟 تست رایگان") & CheckLock & blockCheck & Check_Run) 
+@Client.on_message(filters.regex("🎁 تست رایگان") & CheckLock & blockCheck & Check_Run) 
 async def FreeTest(c:Client,m:Message):
+     
      if await orm.checkServiceBtn('freetest') ==True:
       
       if await orm.CheckUserFreeUsed(m.from_user.id) == True: 
