@@ -1,14 +1,24 @@
 #!/bin/bash
 GREEN='\033[0;32m' 
 RED='\033[0;31m'
+
+if [ $(id -u) -ne 0 ]
+  then echo -e "${RED}Please run this script as root or use sudo."
+  exit
+fi
 sudo apt update && apt upgrade -y 
 
 sudo apt install pip -y
 sudo apt install git 
+
 git clone https://github.com/ARS-83/KaiserRobot.git
 sudo apt-get install nginx
+clear
+currentDir=$(basename "$PWD")
+rm "/$currentDir/KaiserRobot"
 cd "/$currentDir/KaiserRobot"
-echo """${GREEN}
+
+echo -e """${GREEN}
     _    ____  ____  
    / \  |  _ \/ ___| 
   / _ \ | |_) \___ \ 
@@ -22,8 +32,8 @@ read -p "${GREEN} Please Enter Your Domain : " server_name
 read -p "Please Enter Your UserId Admin : " userId
 echo "${GREEN} Configuration Nginx ... "
 re='^[0-9]+$'
-if ! [[ $yournumber =~ $re ]] ; then
-   echo "${RED} error: Not a number" >&2; exit 1
+if ! [[ $userId =~ $re ]] ; then
+   echo -e "${RED} error: Not a number" >&2; exit 1
 fi
 
 
@@ -72,7 +82,6 @@ sudo certbot --nginx -d $server_name
 sudo certbot renew --dry-run
 
 echo "${GREEN} Done."
-currentDir=$(basename "$PWD")
 
 
 echo "${GREEN} Configuration Robot ..."
