@@ -29,9 +29,9 @@ echo -e """${GREEN}
 - - - - - - - - - - -                     
 """
 pip install -r requirements.txt
-read -p "${GREEN} Please Enter Your Domain : " server_name
-read -p "Please Enter Your UserId Admin : " userId
-echo "${GREEN} Configuration Nginx ... "
+read -p -e "${GREEN} Please Enter Your Domain : " server_name
+read -p -e "Please Enter Your UserId Admin : " userId
+echo -e "${GREEN} Configuration Nginx ... "
 re='^[0-9]+$'
 if ! [[ $userId =~ $re ]] ; then
    echo -e "${RED} error: Not a number" >&2; exit 1
