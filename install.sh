@@ -1,14 +1,32 @@
 #!/bin/bash
-
+GREEN='\033[0;32m' 
+RED='\033[0;31m'
 sudo apt update && apt upgrade -y 
 
 sudo apt install pip -y
 sudo apt install git 
 git clone https://github.com/ARS-83/KaiserRobot.git
-
 sudo apt-get install nginx
+cd "/$currentDir/KaiserRobot"
+echo """${GREEN}
+    _    ____  ____  
+   / \  |  _ \/ ___| 
+  / _ \ | |_) \___ \ 
+ / ___ \|  _ < ___) |
+/_/   \_\_| \_\____/ 
+                     
+- - - - - - - - - - -                     
+"""
+pip install -r requirements.txt
+read -p "${GREEN} Please Enter Your Domain : " server_name
+read -p "Please Enter Your UserId Admin : " userId
+echo "${GREEN} Configuration Nginx ... "
+re='^[0-9]+$'
+if ! [[ $yournumber =~ $re ]] ; then
+   echo "${RED} error: Not a number" >&2; exit 1
+fi
 
-read -p "Please Enter Your Domain : " server_name
+
 output_file="/etc/nginx/sites-enabled/${server_name}"
 
 cat <<EOL > "$output_file"
@@ -53,9 +71,17 @@ sudo certbot --nginx -d $server_name
 
 sudo certbot renew --dry-run
 
+echo "${GREEN} Done."
 currentDir=$(basename "$PWD")
-cd "/$currentDir/KaiserRobot"
-pip install -r requirements.txt
+
+
+echo "${GREEN} Configuration Robot ..."
+
+cat <<EOL > "/$currentDir/KaiserRobot/Config/Config.json" 
+{"ownerId": $userId, "SendingPublicMessage": 0, "NumberConfig": 0, "offset": 0}
+
+EOL
+
 serviceDir="/etc/systemd/system/Kaiser.service"
 
 python_path=$(which python3)
@@ -74,7 +100,11 @@ ExecStart=$python_path /$currentDir/KaiserRobot/__main__.py
 [Install]
 WantedBy=multi-user.target
 EOL
-
+echo "${GREEN} Running Robot ..."
 sudo systemctl daemon-reload
 sudo systemctl enable Kaiser.service
 sudo systemctl start Kaiser.service
+nohup gunicorn -w 4 -b 127.0.0.1:8000 SubscribeHandler:app & 
+
+clear 
+echo "${GREEN} Done. Your Robot Is Running"

@@ -486,6 +486,7 @@ async def GetChanellLock():
 
 async def GetMainKeys(userId:int):
     data  = await ReadFileText()
+    dataConfig = await ReadFileConfig()
     data = data['mainKey']
     
     result = await db_manager.execute_query_one(f'SELECT * FROM Users WHERE UserId = {userId} ')
@@ -496,7 +497,7 @@ async def GetMainKeys(userId:int):
     btntate = json.loads(setting[4])
     print(result)
 
-    if   userId != data['ownerId']:
+    if   userId != dataConfig['ownerId']:
     # {"btnshop":"off","freetest":"off","myacc":"on","mysub":"off"}
     #  btns.append([data['offer']])
      if btntate['btnshop'] == "on":
