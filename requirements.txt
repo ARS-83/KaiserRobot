@@ -9,6 +9,7 @@ asyncio
 apscheduler
 aiofiles
 qrcode
+APScheduler==3.10.4
 flask[async]
 gunicorn
 psutil
