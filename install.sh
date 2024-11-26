@@ -87,10 +87,10 @@ sudo certbot --nginx -d $server_name
 
 sudo certbot renew --dry-run
 
-echo "${GREEN} Done."
+echo -e "${GREEN} Done."
 
 
-echo "${GREEN} Configuration Robot ..."
+echo -e "${GREEN} Configuration Robot ...${NC}"
 
 cat <<EOL > "/$currentDir/KaiserRobot/Config/Config.json" 
 {"ownerId": $userId, "SendingPublicMessage": 0, "NumberConfig": 0, "offset": 0}
@@ -115,11 +115,11 @@ ExecStart=$python_path /$currentDir/KaiserRobot/__main__.py
 [Install]
 WantedBy=multi-user.target
 EOL
-echo "${GREEN} Running Robot ... ${NC}"
+echo -e "${GREEN} Running Robot ... ${NC}"
 sudo systemctl daemon-reload
 sudo systemctl enable Kaiser.service
 sudo systemctl start Kaiser.service
 nohup gunicorn -w 4 -b 127.0.0.1:8000 SubscribeHandler:app & 
 
 clear 
-echo "${GREEN} Done. Your Robot Is Running ${NC}"
+echo -e "${GREEN} Done. Your Robot Is Running ${NC}"
