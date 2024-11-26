@@ -16,7 +16,7 @@ git clone https://github.com/ARS-83/KaiserRobot.git
 sudo apt-get install nginx
 clear
 currentDir=$(basename "$PWD")
-rm "/$currentDir/KaiserRobot"
+
 cd "/$currentDir/KaiserRobot"
 
 echo -e """${GREEN}
