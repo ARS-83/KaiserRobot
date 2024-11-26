@@ -14,3 +14,7 @@ flask[async]
 gunicorn
 psutil
 tgcrypto
+lazyme
+grep
+flask_cors
+ippanel

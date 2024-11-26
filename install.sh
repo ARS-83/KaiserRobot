@@ -2,22 +2,23 @@
 GREEN='\033[0;32m' 
 RED='\033[0;31m'
 NC='\033[0m' # No Color
-if [ $(id -u) -ne 0 ]
-  then echo -e "${RED}Please run this script as root or use sudo."
-  exit
+
+if [ $(id -u) -ne 0 ]; then
+  echo -e "${RED}Please run this script as root or use sudo.${NC}"
+  exit 1
 fi
 
-sudo apt update && apt upgrade -y 
+sudo apt update && sudo apt upgrade -y 
 
-sudo apt install pip -y
-sudo apt install git 
+sudo apt install python3-pip -y
+sudo apt install git -y
 
 git clone https://github.com/ARS-83/KaiserRobot.git
-sudo apt-get install nginx
+sudo apt-get install nginx -y
 clear
 currentDir=$(basename "$PWD")
 
-cd "/$currentDir/KaiserRobot"
+cd "$currentDir/KaiserRobot"
 
 echo -e """${GREEN}
     _    ____  ____  
@@ -28,8 +29,7 @@ echo -e """${GREEN}
                      
 - - - - - - - - - - -                     
 ${NC}"""
-pip install -r requirements.txt
-
+pip3 install -r requirements.txt
 
 echo -e "${GREEN}Please Enter Your Domain:${NC}"
 read -e server_name
@@ -39,11 +39,11 @@ read -e userId
 echo -e "${GREEN} Configuration Nginx ... ${NC}"
 re='^[0-9]+$'
 if ! [[ $userId =~ $re ]] ; then
-   echo -e "${RED} error: Not a number" >&2; exit 1
+   echo -e "${RED} error: Not a number${NC}" >&2
+   exit 1
 fi
 
-
-output_file="/etc/nginx/sites-enabled/${server_name}"
+output_file="/etc/nginx/sites-available/${server_name}"
 
 cat <<EOL > "$output_file"
 server {
@@ -64,14 +64,9 @@ server {
 }
 EOL
 
-output_file="/etc/nginx/sites-available/${server_name}"
-cat <<EOL > "$output_file"
-...
-server_name $server_name;
-...
-EOL
+ln -s "/etc/nginx/sites-available/${server_name}" "/etc/nginx/sites-enabled/"
 
-sudo apt install certbot python3-certbot-nginx
+sudo apt install certbot python3-certbot-nginx -y
 
 sudo nginx -t
 
@@ -87,14 +82,12 @@ sudo certbot --nginx -d $server_name
 
 sudo certbot renew --dry-run
 
-echo -e "${GREEN} Done."
-
+echo -e "${GREEN} Done.${NC}"
 
 echo -e "${GREEN} Configuration Robot ...${NC}"
 
-cat <<EOL > "/$currentDir/KaiserRobot/Config/Config.json" 
+cat <<EOL > "$currentDir/KaiserRobot/Config/Config.json" 
 {"ownerId": $userId, "SendingPublicMessage": 0, "NumberConfig": 0, "offset": 0}
-
 EOL
 
 serviceDir="/etc/systemd/system/Kaiser.service"
@@ -110,16 +103,18 @@ After=multi-user.target
 [Service]
 Type=simple
 Restart=always
-WorkingDirectory=/$currentDir/KaiserRobot
-ExecStart=$python_path /$currentDir/KaiserRobot/__main__.py
+WorkingDirectory=$currentDir/KaiserRobot
+ExecStart=$python_path $currentDir/KaiserRobot/__main__.py
 [Install]
 WantedBy=multi-user.target
 EOL
+
 echo -e "${GREEN} Running Robot ... ${NC}"
 sudo systemctl daemon-reload
 sudo systemctl enable Kaiser.service
 sudo systemctl start Kaiser.service
-nohup gunicorn -w 4 -b 127.0.0.1:8000 SubscribeHandler:app & 
+
+sudo nohup gunicorn -w 4 -b 127.0.0.1:8000 SubscribeHandler:app & 
 
 clear 
 echo -e "${GREEN} Done. Your Robot Is Running ${NC}"
