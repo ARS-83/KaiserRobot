@@ -1,7 +1,7 @@
 #!/bin/bash
 GREEN='\033[0;32m' 
 RED='\033[0;31m'
-
+NC='\033[0m' # No Color
 if [ $(id -u) -ne 0 ]
   then echo -e "${RED}Please run this script as root or use sudo."
   exit
@@ -27,11 +27,16 @@ echo -e """${GREEN}
 /_/   \_\_| \_\____/ 
                      
 - - - - - - - - - - -                     
-"""
+${NC}"""
 pip install -r requirements.txt
-read -p -e "${GREEN} Please Enter Your Domain : " server_name
-read -p -e "Please Enter Your UserId Admin : " userId
-echo -e "${GREEN} Configuration Nginx ... "
+
+
+echo -e "${GREEN}Please Enter Your Domain:${NC}"
+read -e server_name
+
+echo -e "${GREEN}Please Enter Your UserId Admin:${NC}"
+read -e userId
+echo -e "${GREEN} Configuration Nginx ... ${NC}"
 re='^[0-9]+$'
 if ! [[ $userId =~ $re ]] ; then
    echo -e "${RED} error: Not a number" >&2; exit 1
@@ -110,11 +115,11 @@ ExecStart=$python_path /$currentDir/KaiserRobot/__main__.py
 [Install]
 WantedBy=multi-user.target
 EOL
-echo "${GREEN} Running Robot ..."
+echo "${GREEN} Running Robot ... ${NC}"
 sudo systemctl daemon-reload
 sudo systemctl enable Kaiser.service
 sudo systemctl start Kaiser.service
 nohup gunicorn -w 4 -b 127.0.0.1:8000 SubscribeHandler:app & 
 
 clear 
-echo "${GREEN} Done. Your Robot Is Running"
+echo "${GREEN} Done. Your Robot Is Running ${NC}"
