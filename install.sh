@@ -6,6 +6,7 @@ if [ $(id -u) -ne 0 ]
   then echo -e "${RED}Please run this script as root or use sudo."
   exit
 fi
+
 sudo apt update && apt upgrade -y 
 
 sudo apt install pip -y
