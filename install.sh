@@ -1,6 +1,6 @@
 #!/bin/bash
 GREEN='\033[0;32m' 
-RED='\033[0;31m'
+RED='\033[0;31m' 
 NC='\033[0m' # No Color
 
 if [ $(id -u) -ne 0 ]; then
@@ -11,12 +11,24 @@ fi
 sudo apt update && sudo apt upgrade -y 
 
 sudo apt install python3-pip -y
+
 sudo apt install git -y
 
-git clone https://github.com/ARS-83/KaiserRobot.git
-sudo apt-get install nginx -y
-clear
 currentDir=$(basename "$PWD")
+
+ls "$currentDir/KaiserRobot"
+if [ $? != 0 ]; then
+        echo -e "${RED}Directory KaiserRobot already exists! If installed in your device please update"
+        exit 1;
+fi
+
+
+git clone https://github.com/ARS-83/KaiserRobot.git
+
+sudo apt-get install nginx -y
+
+clear
+
 
 cd "$currentDir/KaiserRobot"
 
@@ -36,12 +48,18 @@ read -e server_name
 
 echo -e "${GREEN}Please Enter Your UserId Admin:${NC}"
 read -e userId
-echo -e "${GREEN} Configuration Nginx ... ${NC}"
+
 re='^[0-9]+$'
 if ! [[ $userId =~ $re ]] ; then
    echo -e "${RED} error: Not a number${NC}" >&2
    exit 1
 fi
+
+echo -e "${GREEN}Please Enter Your Bot Token:${NC}"
+read -e token
+
+echo -e "${GREEN} Configuration Nginx ... ${NC}"
+
 
 output_file="/etc/nginx/sites-available/${server_name}"
 
@@ -87,7 +105,7 @@ echo -e "${GREEN} Done.${NC}"
 echo -e "${GREEN} Configuration Robot ...${NC}"
 
 cat <<EOL > "$currentDir/KaiserRobot/Config/Config.json" 
-{"ownerId": $userId, "SendingPublicMessage": 0, "NumberConfig": 0, "offset": 0}
+{"ownerId": $userId, "SendingPublicMessage": 0, "NumberConfig": 0, "offset": 0,"bot_token" : "$token"}
 EOL
 
 serviceDir="/etc/systemd/system/Kaiser.service"

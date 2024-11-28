@@ -24,8 +24,11 @@ logger = logging.getLogger(__name__)
 context = Context.DatabaseManager()
 
 
+def ReadFileConfigNonAsync():
+   with open('Config/Config.json',mode='r',encoding='utf-8') as f:
+      return json.loads(f.read())
 
-
+config = ReadFileConfigNonAsync()
 
 async def SaveFileConfig(data):
  async with aiofiles.open('Config/Config.json', mode='w',encoding='utf-8') as f: 
@@ -59,11 +62,11 @@ def generate_password(length):
 
 
 plugins = dict(root="Plugins")
-app = Client("Kaiser_Robo23esfvdf23t", 
+app = Client("Kaiser_Robot", 
              api_id=27920385,
              plugins=plugins,
              api_hash="6ef7b57f85f5d96dfbde6b4fd36412be",
-             bot_token="6489326673:AAF20M8j0FHspx1NyyMms4SHKrSYO3G3hGQ")
+             bot_token=config['ownerId'])
 
 async def sendMessage():
  data = await ReadFileConfig()
