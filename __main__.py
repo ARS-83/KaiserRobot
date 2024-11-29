@@ -16,7 +16,7 @@ from db import Context
 from service import orm
 import logging
 import ast
-logging.basicConfig(level=logging.WARNING, 
+logging.basicConfig(level=logging.INFO, 
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     handlers=[logging.FileHandler('Kaiser.log'), logging.StreamHandler()])
 
@@ -66,7 +66,7 @@ app = Client("Kaiser_Robot",
              api_id=27920385,
              plugins=plugins,
              api_hash="6ef7b57f85f5d96dfbde6b4fd36412be",
-             bot_token=config['ownerId'])
+             bot_token=config['bot_token'])
 
 async def sendMessage():
  data = await ReadFileConfig()
