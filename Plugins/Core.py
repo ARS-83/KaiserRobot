@@ -345,7 +345,7 @@ async def Cooperation(c:Client,m:Message):
 🔰 در این بخش میتوانید با همکاری کنید                 
 
 🟣 | /start
-""",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("👤 زیر مجموعه گیری",callback_data="collection")],[InlineKeyboardButton("🤝 تخفیف همکاری",callback_data="Cooperationdiscount")],[InlineKeyboardButton("🛍 خرید پنل همکاری",callback_data="buyPanel")],[InlineKeyboardButton("🤖 دریافت ربات اختصاصی",callback_data="buyBot")]]))
+""",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("👤 زیر مجموعه گیری",callback_data="collection")],[InlineKeyboardButton("🤝 تخفیف همکاری",callback_data="Cooperationdiscount")]]))
  else:
               await m.reply("""این بخش غیر فعال است 
                   
