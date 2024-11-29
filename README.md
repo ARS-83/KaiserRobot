@@ -1,4 +1,4 @@
-<p align="center">Kaiser 👑</p>
+<h2 align="center">Kaiser 👑</h2>
 
 
 
