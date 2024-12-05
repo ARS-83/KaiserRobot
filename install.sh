@@ -22,7 +22,6 @@ sudo apt-get install nginx -y
 
 clear
 
-
 cd "$currentDir/KaiserRobot"
 
 echo -e """${GREEN}
