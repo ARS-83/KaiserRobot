@@ -16,13 +16,6 @@ sudo apt install git -y
 
 currentDir=$(basename "$PWD")
 
-ls "$currentDir/KaiserRobot"
-if [ $? != 0 ]; then
-        echo -e "${RED}Directory KaiserRobot already exists! If installed in your device please update"
-        exit 1;
-fi
-
-
 git clone https://github.com/ARS-83/KaiserRobot.git
 
 sudo apt-get install nginx -y
