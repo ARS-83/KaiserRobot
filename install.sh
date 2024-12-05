@@ -96,7 +96,7 @@ echo -e "${GREEN} Done.${NC}"
 
 echo -e "${GREEN} Configuration Robot ...${NC}"
 
-cat <<EOL > "$currentDir/KaiserRobot/Config/Config.json" 
+cat <<EOL > "/$currentDir/KaiserRobot/Config/Config.json" 
 {"ownerId": $userId, "SendingPublicMessage": 0, "NumberConfig": 0, "offset": 0,"bot_token" : "$token"}
 EOL
 
