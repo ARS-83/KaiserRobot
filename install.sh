@@ -114,7 +114,7 @@ After=multi-user.target
 Type=simple
 Restart=always
 WorkingDirectory=/$currentDir/KaiserRobot
-ExecStart=/$python_path $currentDir/KaiserRobot/__main__.py
+ExecStart=$python_path /$currentDir/KaiserRobot/__main__.py
 [Install]
 WantedBy=multi-user.target
 EOL
