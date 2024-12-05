@@ -24,6 +24,8 @@ clear
 
 cd "/$currentDir/KaiserRobot"
 
+pip3 install -r requirements.txt
+clear 
 echo -e """${GREEN}
     _    ____  ____  
    / \  |  _ \/ ___| 
@@ -33,8 +35,6 @@ echo -e """${GREEN}
                      
 - - - - - - - - - - -                     
 ${NC}"""
-pip3 install -r requirements.txt
-
 echo -e "${GREEN}Please Enter Your Domain:${NC}"
 read -e server_name
 
