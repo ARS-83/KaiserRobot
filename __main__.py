@@ -63,9 +63,9 @@ def generate_password(length):
 
 plugins = dict(root="Plugins")
 app = Client("Kaiser_Robot", 
-             api_id=27920385,
+             api_id=11111111,
              plugins=plugins,
-             api_hash="6ef7b57f85f5d96dfbde6b4fd36412be",
+             api_hash="asasdddc",
              bot_token=config['bot_token'])
 
 async def sendMessage():
